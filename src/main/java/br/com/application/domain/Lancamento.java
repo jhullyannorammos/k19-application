@@ -12,11 +12,8 @@ import javax.persistence.ManyToOne;
 public class Lancamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	private String numeroNotaFiscal;
 
 	private String empresaOrigem;
 
@@ -32,14 +29,6 @@ public class Lancamento implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNumeroNotaFiscal() {
-		return numeroNotaFiscal;
-	}
-
-	public void setNumeroNotaFiscal(String numeroNotaFiscal) {
-		this.numeroNotaFiscal = numeroNotaFiscal;
 	}
 
 	public String getEmpresaOrigem() {
