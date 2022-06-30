@@ -1,11 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 	<ui:composition>
-	<ul>
-		<li><h:link outcome="cadastropessoas.xhtml" value="Cadastro de Pessoas"/></li>
-        <li><h:link outcome="lancamento.xhtml" value="Lancamento"/></li>
-	</ul>   
+
+	
+	<p:tabMenu id="tabMenu">
+			 <p:menuitem value="Cadastro de pessoas" icon="ui-icon-user" outcome="cadastropessoas.xhtml" iconPos="top"/>
+             <p:menuitem value="Lancamentos" icon="ui-icon-gear" outcome="lancamento.xhtml" iconPos="top"/>
+	</p:tabMenu>  
    </ui:composition>
 </html>

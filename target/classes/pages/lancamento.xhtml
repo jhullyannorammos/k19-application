@@ -17,9 +17,6 @@
 				<h:outputLabel value="ID:"/>
 				<h:inputText value="#{lancementoBean.lancamento.id}" readonly="true"/>
 				
-				<h:outputLabel value="Nota:"/>
-				<h:inputText value="#{lancementoBean.lancamento.numeroNotaFiscal}"/>
-				
 				<h:outputLabel value="Origem:"/>
 				<h:inputText value="#{lancementoBean.lancamento.empresaOrigem}"/>
 			
@@ -43,11 +40,6 @@
 				<h:column>
 					<f:facet name="header">ID</f:facet>
 					<h:outputLabel value="#{lanc.id}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Nota</f:facet>
-					<h:outputLabel value="#{lanc.numeroNotaFiscal}"/>
 				</h:column>
 				
 				<h:column>
