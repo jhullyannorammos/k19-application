@@ -10,14 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+@SuppressWarnings("serial")
 @Entity
 @NamedQuery(name = "Empresa.findAll", query = "SELECT e FROM Empresa e")
 @SequenceGenerator(initialValue = 1, allocationSize = 1, sequenceName = "empresa_sequence", name = "empresa_sequence")
 public class Empresa implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa_sequence")
 	private Long id;
 
 	private String nome;
