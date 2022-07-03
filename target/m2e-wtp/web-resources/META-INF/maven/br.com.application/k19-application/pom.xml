@@ -100,7 +100,15 @@
 			<artifactId>primefaces</artifactId>
 			<version>5.2</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces-mobile -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces-mobile</artifactId>
+			<version>0.9.4</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
