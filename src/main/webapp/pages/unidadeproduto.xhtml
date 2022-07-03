@@ -9,9 +9,7 @@
 	xmlns:espc="http://java.sun.com/jsf/composite/componentes">
 
 <ui:composition template="estrutura.xhtml">
-	<pm:page id="paginaUnidade">
-		<pm:content id="pagina">
-			<ui:include src="/rd/menu.xhtml" />
+
 			<h:form id="formProduto">
 				<p:growl autoUpdate="true" id="msg" showDetail="false" life="2000" />
 				<p:panel header="Unidade de produto" id="panelUnidade">
@@ -47,9 +45,7 @@
 
 					</pm:field>
 					<pm:field>
-						<p:commandButton value="Salvar" update="@form, paginaUnidade:formPesquisar , msg" ajax="true"
-							actionListener="#{unidadeProdutoManageBean.salvar()}" />
-
+						<p:commandButton value="Salvar" update="@form, :formPesquisar , msg" ajax="true" actionListener="#{unidadeProdutoManageBean.salvar()}" />
 					</pm:field>
 					<pm:field>
 						<center>
@@ -109,7 +105,7 @@
 							<f:setPropertyActionListener
 								target="#{unidadeProdutoManageBean.unidadeProduto}"
 								value="#{unidade}" />
-							<f:ajax render=":paginaUnidade:formProduto" />
+							<f:ajax render=":formProduto" />
 							<h:graphicImage value="/resources/gfx/editar.png" width="30" height="30"/>
 						</h:commandLink>
 					</p:column>
@@ -124,7 +120,6 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
-		</pm:content>
-	</pm:page>
+
 </ui:composition>
 </html>

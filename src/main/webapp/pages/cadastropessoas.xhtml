@@ -115,10 +115,6 @@
 			<esp:coluna nome="Nome" valor="#{p.nome}" escapar="true" informar="false" />
 			<esp:coluna nome="Email" valor="#{p.email}" escapar="true" informar="false" />
 			<esp:coluna nome="Telefone" valor="#{p.telefone}" escapar="false" informar="false" />
-			<h:column>
-				<f:facet name="header">Ações</f:facet>
-				<espc:editarExcluir alvo="#{cadastroPessoasBean.pessoaSelecionada}" excluirListener="#{cadastroPessoasBean.excluir}" objeto="#{p}" />
-			</h:column>
 		</h:dataTable>
 	</h:form>
 </ui:composition>
