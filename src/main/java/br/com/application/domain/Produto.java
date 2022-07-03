@@ -41,7 +41,7 @@ public class Produto implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@ForeignKey(name="unidade_id")
 	@JoinColumn(referencedColumnName = "id", name = "unidade_id", nullable = false)
-	private Long unidadeProduto;
+	private UnidadeProduto unidadeProduto;
 
 
 
@@ -84,14 +84,12 @@ public class Produto implements Serializable {
 	public void setCriterio_inspecao(Long criterio_inspecao) {
 		this.criterio_inspecao = criterio_inspecao;
 	}
-	
-	
 
-	public Long getUnidadeProduto() {
+	public UnidadeProduto getUnidadeProduto() {
 		return unidadeProduto;
 	}
 
-	public void setUnidadeProduto(Long unidadeProduto) {
+	public void setUnidadeProduto(UnidadeProduto unidadeProduto) {
 		this.unidadeProduto = unidadeProduto;
 	}
 

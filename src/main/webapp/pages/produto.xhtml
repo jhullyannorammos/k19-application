@@ -7,8 +7,6 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:esp="http://www.especializa.com.br/facelets/taglibs"
 	xmlns:espc="http://java.sun.com/jsf/composite/componentes">
-	
-	<f:view renderKitId="PRIMEFACES_MOBILE" />
 
 <ui:composition template="estrutura.xhtml">
 
@@ -16,17 +14,18 @@
 				<p:growl autoUpdate="true" id="msg" showDetail="false" life="2000" />
 				<p:panel header="Cadastro de produto">
 					<p:panelGrid columns="1">
-					    <!-- 
+					    
+					    <!--  
 						<pm:field>
 							<p:outputLabel value="Adicionar Unidade: " />
-							<p:link outcome="/rd/unidadeproduto.jsf">
+							<p:link outcome="unidadeProduto.xhtml">
 								<h:graphicImage value="/resources/gfx/add16px.ico" height="50" style="vertical-align: middle" />
 							</p:link>
 						</pm:field>
-
+                        -->
 						<pm:field>
 							<p:outputLabel value="Código: " />
-							<p:inputText maxlength="250"   id="id" readonly="true"
+							<p:inputText maxlength="250" id="id" readonly="true"
 								value="#{produtoManageBean.produto.id}" />
 							<p:message for="id" />
 						</pm:field>
@@ -38,6 +37,7 @@
 								required="true" requiredMessage="Informe o nome do produto." />
 							<p:message for="nome_produto" />
 						</pm:field>
+						
 						<pm:field>
 							<p:outputLabel value="Unidade: " />
 							<p:selectOneMenu id="unidade"
@@ -49,6 +49,7 @@
 									itemValue="#{p}" itemLabel="#{p.description}" />
 							</p:selectOneMenu>
 						</pm:field>
+						
 						<pm:field>
 							<p:outputLabel value="Tipo do Produto: " />
 							<p:selectOneMenu id="tipoProduto"
@@ -60,6 +61,7 @@
 							</p:selectOneMenu>
 							<p:message for="tipoProduto" />
 						</pm:field>
+						
 						<pm:field>
 							<p:outputLabel value="Descrição: " />
 							<p:inputText maxlength="250"   id="descricao"
@@ -67,10 +69,10 @@
 								requiredMessage="Informe a decrição produto." />
 							<p:message for="descricao" />
 						</pm:field>
+						<!--  
 						<pm:field>
 							<p:outputLabel value="Critério: " />
-							<p:inputNumber id="criterio_inspecao"
-								value="#{produtoManageBean.produto.criterio_inspecao}"
+							<p:inputNumber id="criterio_inspecao" value="#{produtoManageBean.produto.criterio_inspecao}"
 								required="true" requiredMessage="Informe o nome do produto.">
 								<f:convertNumber type="number" pattern="#0" />
 							</p:inputNumber>

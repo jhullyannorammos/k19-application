@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:esp="http://www.especializa.com.br/facelets/taglibs"
+	xmlns:espc="http://java.sun.com/jsf/composite/componentes">
+
+<ui:composition template="estrutura.xhtml">
+	<pm:page id="paginaUnidade">
+		<pm:content id="pagina">
+			<ui:include src="/rd/menu.xhtml" />
+			<h:form id="formProduto">
+				<p:growl autoUpdate="true" id="msg" showDetail="false" life="2000" />
+				<p:panel header="Unidade de produto" id="panelUnidade">
+					<p:panelGrid columns="1">
+						<pm:field>
+							<p:outputLabel value="Código: " />
+							<p:inputText maxlength="250"   id="id" readonly="true"
+								value="#{unidadeProdutoManageBean.unidadeProduto.id}" />
+							<p:message for="id" />
+						</pm:field>
+						<pm:field>
+							<p:outputLabel value="Descrição: " />
+							<p:inputText maxlength="250"   id="descricao" required="true"
+								requiredMessage="Informe a descrição."
+								value="#{unidadeProdutoManageBean.unidadeProduto.descricao}" />
+							<p:message for="descricao" />
+						</pm:field>
+						<pm:field>
+							<p:outputLabel value="Sigla: " />
+							<p:inputText maxlength="250"   id="sigla"
+								value="#{unidadeProdutoManageBean.unidadeProduto.sigla}" />
+							<p:message for="sigla" />
+						</pm:field>
+					</p:panelGrid>
+				</p:panel>
+
+				<p:spacer height="50px" />
+
+				<p:panelGrid columns="2">
+					<pm:field>
+						<p:commandButton value="Novo" immediate="true" ajax="false"
+							action="#{unidadeProdutoManageBean.novo()}" />
+
+					</pm:field>
+					<pm:field>
+						<p:commandButton value="Salvar" update="@form, paginaUnidade:formPesquisar , msg" ajax="true"
+							actionListener="#{unidadeProdutoManageBean.salvar()}" />
+
+					</pm:field>
+					<pm:field>
+						<center>
+							<p:commandLink ajax="false" immediate="true">
+								<h:graphicImage library="gfx" name="pdf.ico" height="50"
+									width="50" />
+								<p:fileDownload
+									value="#{unidadeProdutoManageBean.fileRelatorio}" />
+								<f:param name="tipoRelatorio" value="1" />
+							</p:commandLink>
+						</center>
+					</pm:field>
+					<pm:field>
+						<center>
+							<p:commandLink ajax="false" immediate="true">
+								<h:graphicImage library="gfx" name="xls.ico" height="50"
+									width="50" />
+								<p:fileDownload
+									value="#{unidadeProdutoManageBean.fileRelatorio}" />
+								<f:param name="tipoRelatorio" value="2" />
+							</p:commandLink>
+						</center>
+					</pm:field>
+				</p:panelGrid>
+			</h:form>
+
+			<p:spacer height="50px" />
+
+			<h:form id="formPesquisar">
+				<p:panel header="Pesquisar" id="panelPesquisar">
+					<p:panelGrid columns="1" id="panelGridPesquisar">
+
+						<pm:field>
+							<p:outputLabel value="Descrição: " />
+							<p:inputText maxlength="250"   id="descricaoPesquisa"
+								value="#{unidadeProdutoManageBean.descricaoPesquisa}" />
+						</pm:field>
+						<p:commandButton value="Pesquisar" id="botaoPesquisar"
+							update="listaUnidadeProduto" ajax="true"
+							actionListener="#{unidadeProdutoManageBean.pesquisar()}" />
+
+					</p:panelGrid>
+				</p:panel>
+
+				<p:dataTable id="listaUnidadeProduto" var="unidade"
+					value="#{unidadeProdutoManageBean.list}" rows="10" paginator="true"
+					paginatorPosition="bottom" lazy="true"
+					paginatorTemplate="{FirstPageLink}
+								   {PreviousPageLink} {PageLinks} 
+	 							   {NextPageLink} {LastPageLink} {RowsPerPageDropdown} ">
+					<p:column headerText="Descrição" width="100">
+						<h:outputText value="#{unidade.descricao}" />
+					</p:column>
+
+					<p:column headerText="Editar" width="50">
+						<h:commandLink  immediate="true">
+							<f:setPropertyActionListener
+								target="#{unidadeProdutoManageBean.unidadeProduto}"
+								value="#{unidade}" />
+							<f:ajax render=":paginaUnidade:formProduto" />
+							<h:graphicImage value="/resources/gfx/editar.png" width="30" height="30"/>
+						</h:commandLink>
+					</p:column>
+
+					<p:column headerText="Excluir" width="50">
+						<p:commandLink immediate="true" ajax="true"
+							update="@form:listaUnidadeProduto"
+							action="#{unidadeProdutoManageBean.excluir()}">
+							<f:param name="unidadeProdutoId" value="#{unidade.id}" />
+							<h:graphicImage value="/resources/gfx/delete.png" width="30" height="30"/>
+						</p:commandLink>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</pm:content>
+	</pm:page>
+</ui:composition>
+</html>
