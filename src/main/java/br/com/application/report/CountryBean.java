@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.application.dao.UsuarioDAO;
 import br.com.application.domain.Country;
 
 import javax.activation.DataSource;
@@ -17,6 +18,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JFrame;
+
+import org.hibernate.HibernateException;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -33,8 +36,7 @@ import net.sf.jasperreports.swing.JRViewer;
 @ViewScoped
 public class CountryBean implements Serializable {
 	
-	
-	public void print() throws Exception{
+	public void print() throws Exception {
 		String nomeRelatorio = "Relatorio de listagem países";
 		try {
 			List<Country> listagemResultado = Country.findAll();
@@ -71,6 +73,8 @@ public class CountryBean implements Serializable {
 		responseStream.flush();
 		responseStream.close();
 	}
+	
+	
 	
 	public void reportByCountry() throws JRException {
 

@@ -10,12 +10,12 @@
 
 <ui:composition template="estrutura.xhtml">
 
-    
-
     <p:panelGrid columns="2">
          <p:outputLabel value="Relatorio de paises populosos" />
          <p:commandButton value="Relatorio de países" actionListener="#{countryBean.reportByCountry()}"></p:commandButton>
          
+         <p:outputLabel value="Relatorio de usuarios ativos" />
+         <p:commandButton value="Relatorio de usuarios ativos"  actionListener="#{usuarioBean.findByAllUsuarios()}"></p:commandButton>
          
     </p:panelGrid>
 

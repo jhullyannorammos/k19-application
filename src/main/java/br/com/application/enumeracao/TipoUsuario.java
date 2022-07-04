@@ -4,14 +4,13 @@ public enum TipoUsuario {
 	
 	ADMINISTRADOR, 
 	GERENTE, 
-	BALCONISTA;
+	ATENDENTE;
 
-	@Override
-	public String toString() {
+	@Override public String toString() {
 		switch (this) {
-		case ADMINISTRADOR: return "Administrador";
-		case GERENTE: return "Gerente";
-		case BALCONISTA: return "Balconista";
+		case ADMINISTRADOR: return "ADMINISTRADOR";
+		case GERENTE: return "GERENTE";
+		case ATENDENTE: return "ATENDENTE";
 		default:
 			return null;
 		}
