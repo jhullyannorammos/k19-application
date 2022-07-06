@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -22,6 +23,8 @@ import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import br.com.application.dao.UsuarioDAO;
 import br.com.application.domain.Usuario;
+import br.com.application.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -94,10 +97,19 @@ public class UsuarioBean implements Serializable {
 		}
 	}
 	
-	/*
-	 * Retorna caminho onde os relatórios (.jasper e .jrxml e tmps) ficam
-	 * armazenados
-	 **/
+	public void imprimir() throws HibernateException, Exception {
+		try {
+			String caminho = Faces.getRealPath("/reports/usuarios.jasper");
+			Map<String, Object> parametros = new HashMap<>();
+			JasperFillManager.fillReport(caminho, parametros, HibernateUtil.getConnection());
+		} catch (JRException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatorio");
+			erro.printStackTrace();
+		}
+	}
+	
+	/* Retorna caminho onde os relatórios (.jasper e .jrxml e tmps) ficam armazenados
+	
 	private String reportSourcePath() {
 		return FacesContext.getCurrentInstance().getExternalContext().getRealPath("/WEB-INF/relatorios/") + "/";
 	}
@@ -110,10 +122,10 @@ public class UsuarioBean implements Serializable {
 		ServletContext sc =	(ServletContext) context.getExternalContext().getContext();
 		
 		String relPath = sc.getRealPath("/");
-		//String imagemLogo =	relPath + "resources/imagens/especializa.jpg";
+		String imagemLogo =	relPath + "resources/imagens/especializa.jpg";
 		
 		HashMap paramRel = new HashMap<>();
-		//paramRel.put("imagemLogo", imagemLogo);
+		paramRel.put("imagemLogo", imagemLogo);
 		paramRel.put("nmSistema", "Relatorios");
 		paramRel.put("REPORT_LOCALE", new Locale("pt", "BR"));
 		JasperPrint print = null;
@@ -155,7 +167,7 @@ public class UsuarioBean implements Serializable {
 			frame.add(viewer);
 
 		});
-	}
+	}*/
 	
 	
 }
